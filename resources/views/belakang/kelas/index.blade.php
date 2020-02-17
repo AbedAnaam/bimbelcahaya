@@ -14,8 +14,8 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Jenjang Bimbel Cahaya</h6>
-            <a href="{{route('jenjang.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+            <h6 class="m-0 font-weight-bold text-primary">Daftar Kelas</h6>
+            <a href="{{route('kelas.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                 <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Data
             </a>
         </div>

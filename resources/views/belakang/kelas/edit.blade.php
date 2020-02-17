@@ -12,14 +12,14 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Data Jenjang atau Tingkat</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Kelas</h6>
         </div>
 
         <div>
             <form
                 enctype="multipart/form-data"
                 class="bg-white shadow-sm p-3"
-                action="{{route('jenjang.update', $jenjang->id)}}"
+                action="{{route('kelas.update', $kelas->id)}}"
                 method="POST">
 
                 @csrf
@@ -29,31 +29,31 @@
                     value="PUT"
                     name="_method">
 
-                <label>Nama Produk <font style="inline-block" color="red">(*)</font></label>
+                <label>Nama Kelas <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="text"
-                    class="form-control {{$errors->first('nama_jenjang') ? "is-invalid" : ""}}"
-                    value="{{old('nama_jenjang') ? old('nama_jenjang') : $jenjang->nama_jenjang}}"
-                    name="nama_jenjang"
+                    class="form-control {{$errors->first('nama_kelas') ? "is-invalid" : ""}}"
+                    value="{{old('nama_kelas') ? old('nama_kelas') : $kelas->nama_kelas}}"
+                    name="nama_kelas"
                     placeholder="Masukkan Nama Jenjang">
                     <div class="invalid-feedback">
-                        {{$errors->first('nama_jenjang')}}
+                        {{$errors->first('nama_kelas')}}
                     </div>
                 <br>
 
                 <label>Gambar<font style="inline-block" color="red">(*)</font></label><br>
-                @if($jenjang->gambar_jenjang)
+                @if($kelas->gambar_kelas)
                     <span>Current image</span><br>
-                    <img src="{{asset('storage/'. $jenjang->gambar_jenjang)}}" width="120px">
+                    <img src="{{asset('storage/'. $kelas->gambar_kelas)}}" width="120px">
                     <br><br>
                 @endif
                 <input
                     type="file"
-                    class="form-control {{$errors->first('gambar_jenjang') ? "is-invalid" : ""}}"
-                    name="gambar_jenjang">
+                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
+                    name="gambar_kelas">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
                     <div class="invalid-feedback">
-                        {{$errors->first('gambar_jenjang')}}
+                        {{$errors->first('gambar_kelas')}}
                     </div>
                 <br>
                 <br>
@@ -62,7 +62,7 @@
                 <textarea
                     class="form-control {{$errors->first('deskripsi_content') ? "is-invalid" : ""}}" 
                     name="deskripsi_content" id="deskripsi_content">
-                    {{old('deskripsi_content') ? old('deskripsi_content') : $jenjang->deskripsi_content}}
+                    {{old('deskripsi_content') ? old('deskripsi_content') : $kelas->deskripsi_content}}
                 </textarea>
                     <div class="invalid-feedback">
                         {{$errors->first('deskripsi_content')}}
@@ -77,7 +77,7 @@
                             value="Update">
 
                         <a
-                            href="{{route('jenjang.index')}}"
+                            href="{{route('kelas.index')}}"
                             type="button"
                             class="btn btn-warning"
                             value="Kembali"> Kembali

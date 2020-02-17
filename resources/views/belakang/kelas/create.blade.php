@@ -10,7 +10,7 @@
             <form
                 enctype="multipart/form-data"
                 class="bg-white shadow-sm p-3"
-                action="{{route('jenjang.store')}}"
+                action="{{route('kelas.store')}}"
                 method="POST">
 
                 @csrf
@@ -54,7 +54,7 @@
                             value="Simpan">
 
                         <a
-                            href="{{route('jenjang.index')}}"
+                            href="{{route('kelas.index')}}"
                             type="button"
                             class="btn btn-warning"
                             value="Kembali"> Batal
@@ -67,5 +67,5 @@
 @endsection
 
 @section('scripts')
-    @include('belakang.jenjang._scripts')
+    @include('belakang.kelas._scripts')
 @endsection

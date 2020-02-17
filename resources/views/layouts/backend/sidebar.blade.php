@@ -1,6 +1,6 @@
 @if (Auth::check())
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
         {{-- Auth::user()->roles == 'admin' --}}
         <!-- Sidebar - Brand -->
         {{-- <br> --}}
@@ -49,7 +49,7 @@
     
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('kelas.index')}}">
             <i class="fas fa-fw fa-blog"></i>
             <span>Kelas</span></a>
         </li>
