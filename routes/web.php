@@ -42,7 +42,7 @@ Route::group(['namespace'=>'Belakang', 'prefix'=>'belakang', 'middleware'=>'admi
 	Route::get('/', 'DashboardController@index')->name('belakang');
     Route::resource('user', 'UserController');
     Route::resource('jenjang','JenjangController');
-//     Route::resource('profile','ProfileUsaha');
+    Route::resource('kelas','KelasController');
 //     Route::resource('stok', 'StokCtrl');
 //     Route::resource('blog','BlogCtrl');
 });
