@@ -8,7 +8,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin Bimbel Cahaya </div>
+        <div class="sidebar-brand-text mx-3">Hallo {{Auth::user()->username}} </div>
         
         
             {{-- Hallo {{Auth::user()->username}}</div> --}}
@@ -41,8 +41,8 @@
 
         <!-- Nav Item - Profile Usaha -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-bank"></i>
+            <a class="nav-link" href="{{route('jenjang.index')}}">
+                <i class="fas fa-fw fa-business-time"></i>
                 <span>Jenjang</span>
             </a>
         </li>

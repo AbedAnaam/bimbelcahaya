@@ -2,7 +2,7 @@
     $(function() {
         tinymce.init({
           // tinymce.activeEditor.getContent()
-            selector: '#description',
+            selector: '#deskripsi_content',
             theme:'modern',
             height: 400,
             menubar: false,

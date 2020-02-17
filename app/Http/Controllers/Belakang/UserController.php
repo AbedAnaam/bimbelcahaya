@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Belakang;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
 {

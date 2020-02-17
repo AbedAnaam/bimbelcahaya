@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 
 use Yajra\DataTables\DataTables;
-// use Yajra\DataTables\Html\Builder;
+use Yajra\DataTables\Html\Builder;
 
 class JenjangController extends Controller
 {
@@ -18,30 +18,30 @@ class JenjangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $produks = Jenjang::select(['id','nama_produk','image','harga','description']);
-                return DataTables::of($produks)
-                ->addColumn('action', function($produks){
+            $jenjangs = Jenjang::select(['id','nama_jenjang','gambar_jenjang','deskripsi_content']);
+                return DataTables::of($jenjangs)
+                ->addColumn('action', function($jenjangs){
                     return view('belakang.jenjang._action', [
-                        'model'         => $produks,
-                        'form_url'    => route('jenjang.destroy', $produks->id),
-                        'edit_url'      => route('jenjang.edit', $produks->id)]);
+                        'model'         => $jenjangs,
+                        'form_url'      => route('jenjang.destroy', $jenjangs->id),
+                        'edit_url'      => route('jenjang.edit', $jenjangs->id)]);
+                        // 'show_url'      => route('jenjang.show', $jenjangs->id)]);
                 })
-                ->addColumn('description', function($produks){
-                    return strip_tags($produks->description);
+                ->addColumn('deskripsi_content', function($jenjangs){
+                    return strip_tags($jenjangs->deskripsi_content);
                 })->make(true);
         }
 
-        // $html = $htmlBuilder
-        //     ->addColumn(['data'=>'nama_produk', 'name'=>'nama_produk', 'title'=>'Nama Produk'])
-        //     ->addColumn(['data'=>'image', 'name'=>'image', 'title'=>'Gambar Produk'])
-        //     ->addColumn(['data'=>'harga', 'name'=>'harga', 'title'=>'Harga Produk'])
-        //     ->addColumn(['data'=>'description', 'name'=>'description', 'title'=>'Deskripsi Produk'])
-        //     ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
+        $html = $htmlBuilder
+            ->addColumn(['data'=>'nama_jenjang', 'name'=>'nama_jenjang', 'title'=>'Jenjang/Tingkat'])
+            ->addColumn(['data'=>'gambar_jenjang', 'name'=>'gambar_jenjang', 'title'=>'Gambar Jenjang'])
+            ->addColumn(['data'=>'deskripsi_content', 'name'=>'deskripsi_content', 'title'=>'Deskripsi Jenjang'])
+            ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
         
-        return view('belakang.jenjang.index');
+        return view('belakang.jenjang.index')->with(compact('html'));
     }
 
     /**
@@ -51,7 +51,7 @@ class JenjangController extends Controller
      */
     public function create()
     {
-        //
+        return view('belakang.jenjang.create');
     }
 
     /**
@@ -62,7 +62,24 @@ class JenjangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Validator::make($request->all(),[
+            "nama_jenjang"                  => "required|min:5|max:100",
+            "deskripsi_content"             => "required|min:20|max:200",
+            "gambar_jenjang"                => "required",
+        ])->validate();
+
+        $new_jenjang = new Jenjang;
+
+        $new_jenjang->nama_jenjang = $request->get('nama_jenjang');
+        $new_jenjang->deskripsi_content = $request->get('deskripsi_content');
+
+        if ($request->file('gambar_jenjang')) {
+            $file = $request->file('gambar_jenjang')->store('jenjangs', 'public');
+            $new_jenjang->gambar_jenjang = $file;
+        }
+
+        $new_jenjang->save();
+        return redirect()->route('jenjang.index')->with('status', 'Jenjang atau Tingkat berhasil ditambahkan');
     }
 
     /**
@@ -71,9 +88,10 @@ class JenjangController extends Controller
      * @param  \App\Jenjang  $jenjang
      * @return \Illuminate\Http\Response
      */
-    public function show(Jenjang $jenjang)
+    public function show($id)
     {
-        //
+        $jenjang = Jenjang::findOrFail($id);
+        return view('belakang.jenjang.show', ['jenjang'=>$jenjang]);
     }
 
     /**
@@ -82,9 +100,10 @@ class JenjangController extends Controller
      * @param  \App\Jenjang  $jenjang
      * @return \Illuminate\Http\Response
      */
-    public function edit(Jenjang $jenjang)
+    public function edit($id)
     {
-        //
+        $edit = Jenjang::findOrFail($id);
+        return view('belakang.jenjang.edit',['jenjang'=>$edit]);
     }
 
     /**
@@ -94,9 +113,29 @@ class JenjangController extends Controller
      * @param  \App\Jenjang  $jenjang
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jenjang $jenjang)
+    public function update(Request $request, $id)
     {
-        //
+        \Validator::make($request->all(), [
+            "nama_jenjang"          => "required|min:5|max:100",
+            "deskripsi_content"       => "required|min:20|max:200",
+        ])->validate();
+
+        $jenjang = Jenjang::findOrFail($id);
+
+        $jenjang->nama_jenjang = $request->get('nama_jenjang');
+        $jenjang->deskripsi_content = $request->get('deskripsi_content');
+
+        if($request->file('gambar_jenjang')){
+            if ($jenjang->gambar_jenjang && file_exists(storage_path('app/public/' . $jenjang->gambar_jenjang))) {
+                \Storage::delete('public/' . $jenjang->gambar_jenjang);
+            }
+            $file = $request->file('gambar_jenjang')->store('jenjangs', 'public');
+            $jenjang->gambar_jenjang = $file;
+        }
+
+        $jenjang->save();
+
+        return redirect()->route('jenjang.edit', $jenjang->id)->with('status', 'Jenjang berhasil diedit!');
     }
 
     /**
@@ -105,8 +144,10 @@ class JenjangController extends Controller
      * @param  \App\Jenjang  $jenjang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jenjang $jenjang)
+    public function destroy($id)
     {
-        //
+        $user = Jenjang::findOrFail($id);
+        $user->delete();
+        return redirect()->route('jenjang.index')->with('status', 'Jenjang berhasil dihapus!');
     }
 }

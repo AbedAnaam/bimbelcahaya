@@ -2,6 +2,8 @@
 
 <a href="{!! $edit_url !!}" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>
 
+{{-- <a href="{!! $show_url !!}" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a> --}}
+
 {{-- <form
     class="d-inline"
     action="{{!! $delete_url !!}}"
