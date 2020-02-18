@@ -15,7 +15,7 @@ class BuatTabelJenjang extends Migration
     {
         Schema::create('tabel_jenjang', function(Blueprint $table){
 			$table->increments('id');
-			$table->string('gambar_jenjang');
+			$table->string('gambar_jenjang')->comments('Hanya menampilkan path imagenya saja');
 			$table->string('nama_jenjang');
 			$table->mediumText('deskripsi_content')->nullable();
 			$table->rememberToken();

@@ -116,7 +116,7 @@ class JenjangController extends Controller
     public function update(Request $request, $id)
     {
         \Validator::make($request->all(), [
-            "nama_jenjang"          => "required|unique:tabel_jenjang",
+            "nama_jenjang"          => "required",
             "deskripsi_content"       => "required|min:5|max:200",
         ])->validate();
 

@@ -8,6 +8,11 @@ class Mapel extends Model
 {
     protected $table = "tabel_mapel";
 
+    public function kelas()
+    {
+        return $this->belongsTo('App\Model\Kelas', 'kelas_id', 'id');
+    }
+
     public function soal()
     {
         return $this->hasMany('App\Model\Mapel','mapel_id', 'id');
@@ -18,7 +23,7 @@ class Mapel extends Model
         $return = array();
         $data = $query->orderBy('id','desc')->get()->toArray();
         foreach ($data as $key => $value) {
-        	$return[$value['id']] = $value['nama_mapel'];
+            $return[$value['id']] = $value['nama_mapel'];
         }
         return $return;
     }

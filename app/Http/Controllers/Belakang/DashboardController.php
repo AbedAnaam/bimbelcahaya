@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Model\Jenjang;
 use App\User;
 use App\Model\Kelas;
+use App\Model\Mapel;
+use App\Model\Soal;
 
 class DashboardController extends Controller
 {
@@ -23,7 +25,8 @@ class DashboardController extends Controller
         $this->data['jenjang']          = Jenjang::count();
         $this->data['user']             = User::count();
         $this->data['kelas']            = Kelas::count();
-        // $this->data['testimonial']  = Testimonial::count();
+        $this->data['mapel']            = Mapel::count();
+        $this->data['soal']             = Soal::count();
 
         return view('belakang.dashboard', $this->data);
     }

@@ -88,6 +88,7 @@ class UserController extends Controller
 
         if ($request->file('avatar')) {
             $file = $request->file('avatar')->store('avatars', 'public');
+            // dd($file);
             $new_user->avatar = $file;
         }
 
@@ -148,6 +149,7 @@ class UserController extends Controller
                 \Storage::delete('public/' . $user->avatar);
             }
             $file = $request->file('avatar')->store('avatars', 'public');
+            // dd($file);
             $user->avatar = $file;
         }
 

@@ -19,7 +19,7 @@ class BuatTabelMapel extends Migration
             $table->unsignedInteger('kelas_id');
             $table->foreign('kelas_id')->references('id')->on('tabel_kelas')->onUpdate('CASCADE')->onDelete('CASCADE');
 
-            $table->string('gambar_mapel');
+            $table->string('gambar_mapel')->comments('Hanya menampilkan path imagenya saja');
             $table->string('nama_mapel');
             $table->mediumText('deskripsi_mapel')->nullable();
             $table->timestamps();

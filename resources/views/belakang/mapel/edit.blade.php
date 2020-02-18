@@ -12,14 +12,14 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Edit Data Kelas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Edit Data Mapel</h6>
         </div>
 
         <div>
             <form
                 enctype="multipart/form-data"
                 class="bg-white shadow-sm p-3"
-                action="{{route('kelas.update', $kelas->id)}}"
+                action="{{route('mapel.update', $mapel->id)}}"
                 method="POST">
 
                 @csrf
@@ -29,31 +29,31 @@
                     value="PUT"
                     name="_method">
 
-                <label>Nama Kelas <font style="inline-block" color="red">(*)</font></label>
+                <label>Nama Mapel <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="text"
-                    class="form-control {{$errors->first('nama_kelas') ? "is-invalid" : ""}}"
-                    value="{{old('nama_kelas') ? old('nama_kelas') : $kelas->nama_kelas}}"
-                    name="nama_kelas"
+                    class="form-control {{$errors->first('nama_mapel') ? "is-invalid" : ""}}"
+                    value="{{old('nama_mapel') ? old('nama_mapel') : $mapel->nama_mapel}}"
+                    name="nama_mapel"
                     placeholder="Masukkan Nama Mapel">
                     <div class="invalid-feedback">
-                        {{$errors->first('nama_kelas')}}
+                        {{$errors->first('nama_mapel')}}
                     </div>
                 <br>
 
                 <label>Gambar<font style="inline-block" color="red">(*)</font></label><br>
-                @if($kelas->gambar_kelas)
+                @if($mapel->gambar_mapel)
                     <span>Current image</span><br>
-                    <img src="{{asset('storage/'. $kelas->gambar_kelas)}}" width="120px">
+                    <img src="{{asset('storage/'. $mapel->gambar_mapel)}}" width="120px">
                     <br><br>
                 @endif
                 <input
                     type="file"
-                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
-                    name="gambar_kelas">
+                    class="form-control {{$errors->first('gambar_mapel') ? "is-invalid" : ""}}"
+                    name="gambar_mapel">
                     <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
                     <div class="invalid-feedback">
-                        {{$errors->first('gambar_kelas')}}
+                        {{$errors->first('gambar_mapel')}}
                     </div>
                 <br>
                 <br>
@@ -73,14 +73,14 @@
                     </div>
                 </div> --}}
 
-                <label>Deskripsi Kelas <font style="inline-block" color="red">(*)</font></label>
+                <label>Deskripsi Mapel <font style="inline-block" color="red">(*)</font></label>
                 <textarea
-                    class="form-control {{$errors->first('deskripsi_kelas') ? "is-invalid" : ""}}" 
-                    name="deskripsi_kelas" id="deskripsi_kelas">
-                    {{old('deskripsi_kelas') ? old('deskripsi_kelas') : $kelas->deskripsi_kelas}}
+                    class="form-control {{$errors->first('deskripsi_mapel') ? "is-invalid" : ""}}" 
+                    name="deskripsi_mapel" id="deskripsi_mapel">
+                    {{old('deskripsi_mapel') ? old('deskripsi_mapel') : $mapel->deskripsi_mapel}}
                 </textarea>
                     <div class="invalid-feedback">
-                        {{$errors->first('deskripsi_kelas')}}
+                        {{$errors->first('deskripsi_mapel')}}
                     </div>
                 <br>
 
@@ -92,7 +92,7 @@
                             value="Update">
 
                         <a
-                            href="{{route('kelas.index')}}"
+                            href="{{route('mapel.index')}}"
                             type="button"
                             class="btn btn-warning"
                             value="Kembali"> Kembali
@@ -105,5 +105,5 @@
 @endsection
 
 @section('scripts')
-    @include('belakang.kelas._scripts')
+    @include('belakang.mapel._scripts')
 @endsection

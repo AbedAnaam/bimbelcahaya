@@ -43,8 +43,8 @@ Route::group(['namespace'=>'Belakang', 'prefix'=>'belakang', 'middleware'=>'admi
     Route::resource('user', 'UserController');
     Route::resource('jenjang','JenjangController');
     Route::resource('kelas','KelasController');
-//     Route::resource('stok', 'StokCtrl');
-//     Route::resource('blog','BlogCtrl');
+    Route::resource('mapel', 'MapelController');
+    Route::resource('soal','SoalController');
 });
 
 // Route::get('/home', 'HomeController@index')->name('home');

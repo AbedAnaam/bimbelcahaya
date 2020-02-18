@@ -23,7 +23,7 @@ class KelasController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $kelas = Kelas::select(['id','jenjang_id','nama_kelas','gambar_kelas','deskripsi_content']);
+            $kelas = Kelas::select(['id','jenjang_id','nama_kelas','gambar_kelas','deskripsi_kelas']);
             // $jenjang = Jenjang::select(['id','nama_jenjang','deskripsi_content']);
                 return DataTables::of($kelas)
                 ->addColumn('action', function($kelas){
@@ -33,8 +33,8 @@ class KelasController extends Controller
                         'edit_url'      => route('kelas.edit', $kelas->id)]);
                         // 'show_url'      => route('jenjang.show', $jenjangs->id)]);
                 })
-                ->addColumn('deskripsi_content', function($kelas){
-                    return strip_tags($kelas->deskripsi_content);
+                ->addColumn('deskripsi_kelas', function($kelas){
+                    return strip_tags($kelas->deskripsi_kelas);
                 })->make(true);
         }
 
@@ -42,7 +42,7 @@ class KelasController extends Controller
             ->addColumn(['data'=>'nama_kelas', 'name'=>'nama_kelas', 'title'=>'Nama Kelas'])
             ->addColumn(['data'=>'gambar_kelas', 'name'=>'gambar_kelas', 'title'=>'Gambar Kelas'])
             // ->addColumn(['data'=>'nama_jenjang', 'name'=>'nama_jenjang', 'title'=>'Tingkat'])
-            ->addColumn(['data'=>'deskripsi_content', 'name'=>'deskripsi_content', 'title'=>'Deskripsi Kelas'])
+            ->addColumn(['data'=>'deskripsi_kelas', 'name'=>'deskripsi_kelas', 'title'=>'Deskripsi Kelas'])
             ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
         
         return view('belakang.kelas.index')->with(compact('html'));
@@ -69,7 +69,7 @@ class KelasController extends Controller
     {
         \Validator::make($request->all(),[
             "nama_kelas"                    => "required|unique:tabel_kelas",
-            "deskripsi_content"             => "required|min:10|max:200",
+            "deskripsi_kelas"             => "required|min:10|max:200",
             "gambar_kelas"                  => "required",
             "jenjang_id"                    => "required",
         ])->validate();
@@ -77,8 +77,8 @@ class KelasController extends Controller
         $new_kelas = new Kelas;
 
         $new_kelas->nama_kelas = $request->get('nama_kelas');
-        $new_kelas->deskripsi_content = $request->get('deskripsi_content');
-        $new_kelas->jenjang_id = $request->get('jenjang_id.nama_jenjang');
+        $new_kelas->deskripsi_kelas = $request->get('deskripsi_kelas');
+        $new_kelas->jenjang_id = $request->get('jenjang_id');
 
         if ($request->file('gambar_kelas')) {
             $file = $request->file('gambar_kelas')->store('image-kelas', 'public');
@@ -124,14 +124,14 @@ class KelasController extends Controller
     public function update(Request $request, $id)
     {
         \Validator::make($request->all(), [
-            "nama_kelas"          => "required|unique:tabel_kelas",
-            "deskripsi_content"   => "required|min:5|max:200",
+            "nama_kelas"          => "required",
+            "deskripsi_kelas"   => "required|min:5|max:200",
         ])->validate();
 
         $kelas = Kelas::findOrFail($id);
 
         $kelas->nama_kelas = $request->get('nama_kelas');
-        $kelas->deskripsi_content = $request->get('deskripsi_content');
+        $kelas->deskripsi_kelas = $request->get('deskripsi_kelas');
 
         if($request->file('gambar_kelas')){
             if ($kelas->gambar_kelas && file_exists(storage_path('app/public/' . $kelas->gambar_kelas))) {

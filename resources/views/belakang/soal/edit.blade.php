@@ -35,7 +35,7 @@
                     class="form-control {{$errors->first('nama_kelas') ? "is-invalid" : ""}}"
                     value="{{old('nama_kelas') ? old('nama_kelas') : $kelas->nama_kelas}}"
                     name="nama_kelas"
-                    placeholder="Masukkan Nama Mapel">
+                    placeholder="Masukkan Nama Jenjang">
                     <div class="invalid-feedback">
                         {{$errors->first('nama_kelas')}}
                     </div>
@@ -73,14 +73,14 @@
                     </div>
                 </div> --}}
 
-                <label>Deskripsi Kelas <font style="inline-block" color="red">(*)</font></label>
+                <label>Deskripsi Jenjang <font style="inline-block" color="red">(*)</font></label>
                 <textarea
-                    class="form-control {{$errors->first('deskripsi_kelas') ? "is-invalid" : ""}}" 
-                    name="deskripsi_kelas" id="deskripsi_kelas">
-                    {{old('deskripsi_kelas') ? old('deskripsi_kelas') : $kelas->deskripsi_kelas}}
+                    class="form-control {{$errors->first('deskripsi_content') ? "is-invalid" : ""}}" 
+                    name="deskripsi_content" id="deskripsi_content">
+                    {{old('deskripsi_content') ? old('deskripsi_content') : $kelas->deskripsi_content}}
                 </textarea>
                     <div class="invalid-feedback">
-                        {{$errors->first('deskripsi_kelas')}}
+                        {{$errors->first('deskripsi_content')}}
                     </div>
                 <br>
 
@@ -105,5 +105,5 @@
 @endsection
 
 @section('scripts')
-    @include('belakang.kelas._scripts')
+    @include('belakang.jenjang._scripts')
 @endsection

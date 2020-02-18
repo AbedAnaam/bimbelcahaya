@@ -1,6 +1,6 @@
 @if (Auth::check())
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
         {{-- Auth::user()->roles == 'admin' --}}
         <!-- Sidebar - Brand -->
         {{-- <br> --}}
@@ -61,14 +61,14 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('mapel.index')}}">
             <i class="fas fa-fw fa-file-alt"></i>
             <span>Mapel</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('soal.index')}}">
             <i class="fas fa-fw fa-folder-open"></i>
             <span>Soal</span></a>
         </li>

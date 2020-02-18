@@ -2,7 +2,7 @@
     $(function() {
         tinymce.init({
           // tinymce.activeEditor.getContent()
-            selector: '#deskripsi_kelas',
+            selector: '#deskripsi_soal',
             theme:'modern',
             height: 400,
             menubar: false,
