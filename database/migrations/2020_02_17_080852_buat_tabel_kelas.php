@@ -15,11 +15,14 @@ class BuatTabelKelas extends Migration
     {
         Schema::create('tabel_kelas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('jenjang_id');
+
+            $table->unsignedInteger('jenjang_id');
+            $table->foreign('jenjang_id')->references('id')->on('tabel_jenjang')->onUpdate('CASCADE')->onDelete('CASCADE');
+
             $table->string('gambar_kelas');
-            $table->string('kategori_kelas');
+            // $table->string('kategori_kelas');
 			$table->string('nama_kelas');
-			$table->mediumText('deskripsi_content')->nullable();
+			$table->mediumText('deskripsi_kelas')->nullable();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Jenjang / Tingkat</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Kelas</h6>
         </div>
 
         <div>
@@ -15,29 +15,44 @@
 
                 @csrf
 
-                <label>Jenjang / Tingkat <font style="inline-block" color="red">(*)</font></label>
+                <label>Nama Kelas <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="text"
-                    class="form-control {{$errors->first('nama_jenjang') ? "is-invalid" : ""}}"
-                    value="{{old('nama_jenjang')}}"
-                    name="nama_jenjang"
-                    placeholder="Masukkan Jenjang">
+                    class="form-control {{$errors->first('nama_kelas') ? "is-invalid" : ""}}"
+                    value="{{old('nama_kelas')}}"
+                    name="nama_kelas"
+                    placeholder="Masukkan Kelas">
                     <div class="invalid-feedback">
-                        {{$errors->first('nama_jenjang')}}
+                        {{$errors->first('nama_kelas')}}
                     </div>
                 <br>
 
-                <label>Gambar Jenjang <font style="inline-block" color="red">(*)</font></label>
+                <label>Gambar Kelas <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="file"
-                    class="form-control {{$errors->first('gambar_jenjang') ? "is-invalid" : ""}}"
-                    name="gambar_jenjang">
+                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
+                    name="gambar_kelas">
                     <div class="invalid-feedback">
-                        {{$errors->first('gambar_jenjang')}}
+                        {{$errors->first('gambar_kelas')}}
                     </div>
                 <br>
 
-                <label>Deskripsi Jenjang <font style="inline-block" color="red">(*)</font></label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">
+                            <label>Pilih Jenjang</label>
+                            <select class="form-control border-input" name="jenjang_id">
+                                <option value="kosong">- Silakan Pilih Jenjang -</option>
+                                @foreach($jenjang as $jdK => $jdV)
+                                <option value="{{$jdK}}" {{old('jenjang_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
+                                @endforeach
+                            </select>
+                            <span id="helpBlock2" class="help-block">{{$errors->first('jenjang_id')}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Deskripsi Kelas <font style="inline-block" color="red">(*)</font></label>
                 <textarea
                     class="form-control {{$errors->first('deskripsi_content') ? "is-invalid" : ""}}"
                     value="{{old('deskripsi_content')}}" name="deskripsi_content" id="deskripsi_content"></textarea>

@@ -63,8 +63,8 @@ class JenjangController extends Controller
     public function store(Request $request)
     {
         \Validator::make($request->all(),[
-            "nama_jenjang"                  => "required|min:5|max:100",
-            "deskripsi_content"             => "required|min:20|max:200",
+            "nama_jenjang"                  => "required|unique:tabel_jenjang",
+            "deskripsi_content"             => "required|min:5|max:200",
             "gambar_jenjang"                => "required",
         ])->validate();
 
@@ -74,7 +74,7 @@ class JenjangController extends Controller
         $new_jenjang->deskripsi_content = $request->get('deskripsi_content');
 
         if ($request->file('gambar_jenjang')) {
-            $file = $request->file('gambar_jenjang')->store('jenjangs', 'public');
+            $file = $request->file('gambar_jenjang')->store('image-jenjang', 'public');
             $new_jenjang->gambar_jenjang = $file;
         }
 
@@ -116,8 +116,8 @@ class JenjangController extends Controller
     public function update(Request $request, $id)
     {
         \Validator::make($request->all(), [
-            "nama_jenjang"          => "required|min:5|max:100",
-            "deskripsi_content"       => "required|min:20|max:200",
+            "nama_jenjang"          => "required|unique:tabel_jenjang",
+            "deskripsi_content"       => "required|min:5|max:200",
         ])->validate();
 
         $jenjang = Jenjang::findOrFail($id);
@@ -129,7 +129,7 @@ class JenjangController extends Controller
             if ($jenjang->gambar_jenjang && file_exists(storage_path('app/public/' . $jenjang->gambar_jenjang))) {
                 \Storage::delete('public/' . $jenjang->gambar_jenjang);
             }
-            $file = $request->file('gambar_jenjang')->store('jenjangs', 'public');
+            $file = $request->file('gambar_jenjang')->store('image-jenjang', 'public');
             $jenjang->gambar_jenjang = $file;
         }
 
@@ -146,8 +146,8 @@ class JenjangController extends Controller
      */
     public function destroy($id)
     {
-        $user = Jenjang::findOrFail($id);
-        $user->delete();
+        $jenjang = Jenjang::findOrFail($id);
+        $jenjang->delete();
         return redirect()->route('jenjang.index')->with('status', 'Jenjang berhasil dihapus!');
     }
 }

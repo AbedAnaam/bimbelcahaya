@@ -58,6 +58,21 @@
                 <br>
                 <br>
 
+                {{-- <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">
+                            <label>Pilih Jenjang</label>
+                            <select class="form-control border-input" name="jenjang_id">
+                                <option value="kosong">- Silakan Pilih Jenjang -</option>
+                                @foreach($jenjang as $jdK => $jdV)
+                                <option value="{{$jdK}}" {{old('jenjang_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
+                                @endforeach
+                            </select>
+                            <span id="helpBlock2" class="help-block">{{$errors->first('jenjang_id')}}</span>
+                        </div>
+                    </div>
+                </div> --}}
+
                 <label>Deskripsi Jenjang <font style="inline-block" color="red">(*)</font></label>
                 <textarea
                     class="form-control {{$errors->first('deskripsi_content') ? "is-invalid" : ""}}" 

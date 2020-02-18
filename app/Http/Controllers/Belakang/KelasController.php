@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Belakang;
 
 use App\Model\Kelas;
+use App\Model\Jenjang;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +23,8 @@ class KelasController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $kelas = Kelas::select(['id','nama_kelas','gambar_kelas','deskripsi_content']);
+            $kelas = Kelas::select(['id','jenjang_id','nama_kelas','gambar_kelas','deskripsi_content']);
+            // $jenjang = Jenjang::select(['id','nama_jenjang','deskripsi_content']);
                 return DataTables::of($kelas)
                 ->addColumn('action', function($kelas){
                     return view('belakang.kelas._action', [
@@ -38,6 +41,7 @@ class KelasController extends Controller
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama_kelas', 'name'=>'nama_kelas', 'title'=>'Nama Kelas'])
             ->addColumn(['data'=>'gambar_kelas', 'name'=>'gambar_kelas', 'title'=>'Gambar Kelas'])
+            // ->addColumn(['data'=>'nama_jenjang', 'name'=>'nama_jenjang', 'title'=>'Tingkat'])
             ->addColumn(['data'=>'deskripsi_content', 'name'=>'deskripsi_content', 'title'=>'Deskripsi Kelas'])
             ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
         
@@ -51,7 +55,8 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('belakang.kelas.create');
+        $this->data['jenjang'] = Jenjang::SelectBox();
+        return view('belakang.kelas.create', $this->data);
     }
 
     /**
@@ -62,7 +67,26 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        \Validator::make($request->all(),[
+            "nama_kelas"                    => "required|unique:tabel_kelas",
+            "deskripsi_content"             => "required|min:10|max:200",
+            "gambar_kelas"                  => "required",
+            "jenjang_id"                    => "required",
+        ])->validate();
+
+        $new_kelas = new Kelas;
+
+        $new_kelas->nama_kelas = $request->get('nama_kelas');
+        $new_kelas->deskripsi_content = $request->get('deskripsi_content');
+        $new_kelas->jenjang_id = $request->get('jenjang_id.nama_jenjang');
+
+        if ($request->file('gambar_kelas')) {
+            $file = $request->file('gambar_kelas')->store('image-kelas', 'public');
+            $new_kelas->gambar_kelas = $file;
+        }
+
+        $new_kelas->save();
+        return redirect()->route('kelas.index')->with('status', 'Data Kelas berhasil ditambahkan');
     }
 
     /**
@@ -71,7 +95,7 @@ class KelasController extends Controller
      * @param  \App\Model\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function show(Kelas $kelas)
+    public function show()
     {
         //
     }
@@ -82,9 +106,12 @@ class KelasController extends Controller
      * @param  \App\Model\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Kelas $kelas)
+    public function edit($id)
     {
-        //
+        // $data = Kelas::where('jenjang_id', $id)->with('jenjang')->get()->toArray();
+        // dd($data);
+        $edit = Kelas::findOrFail($id);
+        return view('belakang.kelas.edit',['kelas'=>$edit]);
     }
 
     /**
@@ -94,9 +121,29 @@ class KelasController extends Controller
      * @param  \App\Model\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kelas $kelas)
+    public function update(Request $request, $id)
     {
-        //
+        \Validator::make($request->all(), [
+            "nama_kelas"          => "required|unique:tabel_kelas",
+            "deskripsi_content"   => "required|min:5|max:200",
+        ])->validate();
+
+        $kelas = Kelas::findOrFail($id);
+
+        $kelas->nama_kelas = $request->get('nama_kelas');
+        $kelas->deskripsi_content = $request->get('deskripsi_content');
+
+        if($request->file('gambar_kelas')){
+            if ($kelas->gambar_kelas && file_exists(storage_path('app/public/' . $kelas->gambar_kelas))) {
+                \Storage::delete('public/' . $kelas->gambar_kelas);
+            }
+            $file = $request->file('gambar_kelas')->store('image-kelas', 'public');
+            $kelas->gambar_kelas = $file;
+        }
+
+        $kelas->save();
+
+        return redirect()->route('kelas.edit', $kelas->id)->with('status', 'Kelas berhasil diedit!');
     }
 
     /**
@@ -105,8 +152,10 @@ class KelasController extends Controller
      * @param  \App\Model\Kelas  $kelas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kelas $kelas)
+    public function destroy($id)
     {
-        //
+        $kelas = Kelas::findOrFail($id);
+        $kelas->delete();
+        return redirect()->route('kelas.index')->with('status', 'Kelas berhasil dihapus!');
     }
 }

@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\Jenjang;
+use App\User;
+use App\Model\Kelas;
 
 class DashboardController extends Controller
 {
@@ -18,9 +20,9 @@ class DashboardController extends Controller
     public function index()
     {
         $this->data['title']            = 'Dashboard';
-        $this->data['jenjang']           = Jenjang::count();
-        // $this->data['testimoni']        = Testimoni::count();
-        // $this->data['resep']            = Resep::count();
+        $this->data['jenjang']          = Jenjang::count();
+        $this->data['user']             = User::count();
+        $this->data['kelas']            = Kelas::count();
         // $this->data['testimonial']  = Testimonial::count();
 
         return view('belakang.dashboard', $this->data);

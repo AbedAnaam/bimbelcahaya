@@ -10,6 +10,16 @@ class Kelas extends Model
 
     public function jenjang()
     {
-        return $this->hasMany('Jenjang');
+        return $this->belongsTo('App\Model\Jenjang','jenjang_id','id');
+    }
+
+    public function scopeSelectBox($query)
+    {
+        $return = array();
+        $data = $query->orderBy('id','desc')->get()->toArray();
+        foreach ($data as $key => $value) {
+        	$return[$value['id']] = $value['nama_kelas'];
+        }
+        return $return;
     }
 }

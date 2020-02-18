@@ -42,7 +42,7 @@
         <!-- Nav Item - Profile Usaha -->
         <li class="nav-item">
             <a class="nav-link" href="{{route('jenjang.index')}}">
-                <i class="fas fa-fw fa-business-time"></i>
+                <i class="fas fa-fw fa-signal"></i>
                 <span>Jenjang</span>
             </a>
         </li>
@@ -50,7 +50,7 @@
         <!-- Nav Item - Tables -->
         <li class="nav-item">
         <a class="nav-link" href="{{route('kelas.index')}}">
-            <i class="fas fa-fw fa-blog"></i>
+            <i class="fas fa-fw fa-chalkboard-teacher"></i>
             <span>Kelas</span></a>
         </li>
 
@@ -62,14 +62,14 @@
         <!-- Nav Item - Charts -->
         <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-chart-area"></i>
+            <i class="fas fa-fw fa-file-alt"></i>
             <span>Mapel</span></a>
         </li>
 
         <!-- Nav Item - Tables -->
         <li class="nav-item">
         <a class="nav-link" href="#">
-            <i class="fas fa-fw fa-table"></i>
+            <i class="fas fa-fw fa-folder-open"></i>
             <span>Soal</span></a>
         </li>
 
