@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Belakang;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RequestUser;
+
+use App\User;
 // use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller
@@ -62,7 +65,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestUser $request)
     {
         \Validator::make($request->all(),[
             "name"                  => "required|min:5|max:100",
@@ -93,6 +96,7 @@ class UserController extends Controller
         }
 
         $new_user->save();
+        // User::create($request->all());
         return redirect()->route('user.create')->with('status', 'User successfully created.');
     }
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>Bimbel Cahaya</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 	<!-- UIkit CSS -->
@@ -34,7 +34,7 @@
 			Documentation
 		  </a>
 
-		  <div class="navbar-item has-dropdown is-hoverable">
+		  {{-- <div class="navbar-item has-dropdown is-hoverable">
 			<a class="navbar-link">
 			  More
 			</a>
@@ -54,10 +54,10 @@
 				Report an issue
 			  </a>
 			</div>
-		  </div>
+		  </div> --}}
 		</div>
 
-		<div class="navbar-end">
+		{{-- <div class="navbar-end">
 		  <div class="navbar-item">
 			<div class="buttons">
 			  <a class="button is-primary">
@@ -68,7 +68,7 @@
 			  </a>
 			</div>
 		  </div>
-		</div>
+		</div> --}}
 	  </div>
 	</nav>
 	

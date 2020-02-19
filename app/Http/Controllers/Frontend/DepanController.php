@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model;
-
 
 class DepanController extends Controller
 {
@@ -21,7 +21,7 @@ class DepanController extends Controller
 	public function index()
 	{
 		// $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-		return view('depan.index');
+		return view('depan.index', $this->data);
 	}
 
 	// public function produklist()

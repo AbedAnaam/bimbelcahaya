@@ -3,7 +3,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Kelas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Mata Pelajaran</h6>
         </div>
 
         <div>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="our-services" class="our-services section-invert py-1" style="opacity: 1">
-        <h3 class="section-title text-center my-3">Omah Pastry</h3>
+        <h3 class="section-title text-center my-3">Database Soal Bimbel</h3>
         <!-- Features -->
         <div class="features py-4 mb-4">
         <div class="container">

@@ -3,61 +3,71 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">Tambah Kelas</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tambah Soal</h6>
         </div>
 
         <div>
             <form
                 enctype="multipart/form-data"
                 class="bg-white shadow-sm p-3"
-                action="{{route('kelas.store')}}"
+                action="{{route('soal.store')}}"
                 method="POST">
 
                 @csrf
 
-                <label>Nama Kelas <font style="inline-block" color="red">(*)</font></label>
+                <label>Nama Soal <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="text"
-                    class="form-control {{$errors->first('nama_kelas') ? "is-invalid" : ""}}"
-                    value="{{old('nama_kelas')}}"
-                    name="nama_kelas"
-                    placeholder="Masukkan Kelas">
+                    class="form-control {{$errors->first('nama_soal') ? "is-invalid" : ""}}"
+                    value="{{old('nama_soal')}}"
+                    name="nama_soal"
+                    placeholder="Masukkan Soal">
                     <div class="invalid-feedback">
-                        {{$errors->first('nama_kelas')}}
+                        {{$errors->first('nama_soal')}}
                     </div>
                 <br>
 
-                <label>Gambar Kelas <font style="inline-block" color="red">(*)</font></label>
+                <label>Gambar Soal <font style="inline-block" color="red">(*)</font></label>
                 <input
                     type="file"
-                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
-                    name="gambar_kelas">
+                    class="form-control {{$errors->first('gambar_soal') ? "is-invalid" : ""}}"
+                    name="gambar_soal">
                     <div class="invalid-feedback">
-                        {{$errors->first('gambar_kelas')}}
+                        {{$errors->first('gambar_soal')}}
                     </div>
                 <br>
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">
-                            <label>Pilih Jenjang</label>
-                            <select class="form-control border-input" name="jenjang_id">
-                                <option value="kosong">- Silakan Pilih Jenjang -</option>
-                                @foreach($jenjang as $jdK => $jdV)
-                                <option value="{{$jdK}}" {{old('jenjang_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
+                        <div class="form-group @if($errors->has('mapel_id')) has-error @endif">
+                            <label>Pilih Mata Pelajaran</label>
+                            <select class="form-control border-input" name="mapel_id">
+                                <option value="kosong">- Silakan Pilih Mata Pelajaran -</option>
+                                @foreach($mapel as $jdK => $jdV)
+                                <option value="{{$jdK}}" {{old('mapel_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
                                 @endforeach
                             </select>
-                            <span id="helpBlock2" class="help-block">{{$errors->first('jenjang_id')}}</span>
+                            <span id="helpBlock2" class="help-block">{{$errors->first('mapel_id')}}</span>
                         </div>
                     </div>
                 </div>
 
-                <label>Deskripsi Kelas <font style="inline-block" color="red">(*)</font></label>
-                <textarea
-                    class="form-control {{$errors->first('deskripsi_kelas') ? "is-invalid" : ""}}"
-                    value="{{old('deskripsi_kelas')}}" name="deskripsi_kelas" id="deskripsi_kelas"></textarea>
+                <label>Isi Soal <font style="inline-block" color="red">(*)</font></label>
+                <input
+                    type="file"
+                    class="form-control {{$errors->first('isi_soal') ? "is-invalid" : ""}}"
+                    name="isi_soal">
                     <div class="invalid-feedback">
-                        {{$errors->first('deskripsi_kelas')}}
+                        {{$errors->first('isi_soal')}}
+                    </div>
+                <br>
+
+                <label>Deskripsi Soal <font style="inline-block" color="red">(*)</font></label>
+                <textarea
+                    class="form-control {{$errors->first('deskripsi_soal') ? "is-invalid" : ""}}"
+                    value="{{old('deskripsi_soal')}}" name="deskripsi_soal" id="deskripsi_soal"></textarea>
+                    <div class="invalid-feedback">
+                        {{$errors->first('deskripsi_soal')}}
                     </div>
                 <br>
 
@@ -69,7 +79,7 @@
                             value="Simpan">
 
                         <a
-                            href="{{route('kelas.index')}}"
+                            href="{{route('soal.index')}}"
                             type="button"
                             class="btn btn-warning"
                             value="Kembali"> Batal
@@ -82,5 +92,5 @@
 @endsection
 
 @section('scripts')
-    @include('belakang.kelas._scripts')
+    @include('belakang.soal._scripts')
 @endsection

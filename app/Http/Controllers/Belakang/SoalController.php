@@ -75,7 +75,7 @@ class SoalController extends Controller
             "deskripsi_soal"               => "required|min:5|max:200",
             "gambar_soal"                  => "required",
             "isi_soal"                     => "required",
-            "kelas_id"                     => "required",
+            "mapel_id"                     => "required",
         ])->validate();
 
         $new_soal = new Soal;
@@ -83,14 +83,27 @@ class SoalController extends Controller
         $new_soal->nama_soal = $request->get('nama_soal');
         $new_soal->deskripsi_soal = $request->get('deskripsi_soal');
         $new_soal->isi_soal = $request->get('isi_soal');
-        $new_soal->kelas_id = $request->get('kelas_id');
+        $new_soal->mapel_id = $request->get('mapel_id');
 
         if ($request->file('gambar_soal')) {
             $file = $request->file('gambar_soal')->store('image-soal', 'public');
             $new_soal->gambar_soal = $file;
         }
 
+        // Disini proses mendapatkan judul dan memindahkan letak file ke folder tertentu
+        // if ($request->file('isi_soal')){
+        //     $isi_soal   = $file->getClientOriginalName();
+        //     $request->file('isi_soal')->move('uploads/soal/', 'public', $isi_soal);
+        //     $new_soal->isi_soal = $isi_soal;
+        // }
+
+        $file       = $request->file('isi_soal');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('isi_soal')->move("uploads/soal/", $fileName);
+        $new_soal->isi_soal = $fileName;
+
         $new_soal->save();
+        // dd($hasil);
         return redirect()->route('soal.index')->with('status', 'Data Soal berhasil ditambahkan');
     }
 

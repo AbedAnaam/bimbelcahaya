@@ -10,6 +10,11 @@
             </div>
         @endif
 
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Tambah User</h6>
+            </div>
+
         <form 
             enctype="multipart/form-data" 
             class="bg-white shadow-sm p-3" 
@@ -46,29 +51,35 @@
 
             <label for="">Roles</label>
             <br>
+            <div class="form-check form-check-inline">
                 <input
-                class="form-control {{$errors->first('roles') ? "is-invalid" : ""}}"
+                class="form-check-input {{$errors->first('roles') ? "is-invalid" : ""}}"
                 type="checkbox"
                 name="roles[]"
                 id="ADMIN"
                 value="ADMIN">
-                <label for="ADMIN">Administrator</label>    
-                
+                <label class="form-check-label" for="ADMIN">Administrator</label>    
+            </div>
+
+            <div class="form-check form-check-inline">
                 <input
-                class="form-control {{$errors->first('roles') ? "is-invalid" : ""}}"
+                class="form-check-input {{$errors->first('roles') ? "is-invalid" : ""}}"
                 type="checkbox"
                 name="roles[]"
                 id="STAFF"
                 value="STAFF">
-                <label for="STAFF">Staff</label>
-                
+                <label class="form-check-label" for="STAFF">Staff</label>
+            </div>
+
+            <div class="form-check form-check-inline">
                 <input
-                class="form-control {{$errors->first('roles') ? "is-invalid" : ""}}"
+                class="form-check-input {{$errors->first('roles') ? "is-invalid" : ""}}"
                 type="checkbox"
                 name="roles[]"
                 id="CUSTOMER"
                 value="CUSTOMER">
-                <label for="CUSTOMER">Customer</label>
+                <label class="form-check-label" for="CUSTOMER">Customer</label>
+            </div>
                 
                 <div class="invalid-feedback">
                     {{$errors->first('roles')}}
@@ -90,9 +101,10 @@
 
             <label for="address">Address</label>
                 <textarea
+                value="{{old('address')}}"
                 name="address"
                 id="address"
-                class="form-control {{$errors->first('address') ? "is-invalid" : ""}}" value="{{old('address')}}" >
+                class="form-control {{$errors->first('address') ? "is-invalid" : ""}}">
                 </textarea>
                 <div class="invalid-feedback">
                     {{$errors->first('address')}}
@@ -154,5 +166,6 @@
                 type="submit"
                 value="Save"/>
         </form>
+        </div>
     </div>
 @endsection

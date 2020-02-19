@@ -78,7 +78,7 @@
                     <a href="{{route('soal.index')}}" class="d-block" style="text-decoration: none">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Soal</div>
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Soal</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$soal}}</div>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="card-body">
                 Halo {{Auth::user()->username}} atau {{Auth::user()->name}}<br> 
-                Anda sudah login sebagai {{Auth::user()->roles}} <br>
+                {{-- Anda sudah login sebagai {{Auth::user(json_decode(roles))}} <br> --}}
                 Email Anda : <b>{{Auth::user()->email}}</b>
                 </div>
             </div>
