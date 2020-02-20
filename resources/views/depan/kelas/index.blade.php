@@ -16,16 +16,16 @@
 
     <section class="section">
 		<div class="container">
-			<div class="columns">
+			<div class="columns is-mobile">
 				@foreach($jenjang->all() as $jenjang)
-					<div class="column">
+					<div class="column is-4">
 						<div class="uk-animation-toggle" tabindex="0">
 							<div class="uk-card uk-card-default uk-card-body uk-animation-fade is-link">
 								<div class="card-content">
 									<div class="media">
 										<div class="media-left">
 											<figure class="image is-128x128">
-											<img src="{{asset('storage/'.$jenjang->gambar_kelas)}}" alt="Gambar Jenjang">
+											<img src="{{asset('storage/'.$jenjang->gambar_kelas)}}" alt="Gambar Kelas">
 											</figure>
 										</div>
 

@@ -65,7 +65,7 @@ class KelasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestKelas $request)
     {
         \Validator::make($request->all(),[
             "nama_kelas"                    => "required|unique:tabel_kelas",

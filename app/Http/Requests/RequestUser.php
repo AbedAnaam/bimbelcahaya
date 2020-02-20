@@ -34,7 +34,6 @@ class RequestUser extends FormRequest
             'email'                 => "required|email",
             'password'              => "required",
             'password_confirmation' => "required|same:password"
-
         ];
     }
 
@@ -60,7 +59,6 @@ class RequestUser extends FormRequest
             'password.required'                     => 'Password Wajib Diisi',
             'password_confirmation.required'        => 'Konfirmasi Password Harus Diisi',
             'password_confirmation.same:password'   => 'Konfirmasi Password yang dimasukkan tidak sesuai',
-
         ];
     }
 

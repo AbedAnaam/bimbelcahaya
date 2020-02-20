@@ -21,6 +21,7 @@ Route::group(['namespace'=>'Frontend','prefix' => '/', 'as'=>'root.'], function 
     Route::get('/', ['as' => 'index', 'uses' => 'DepanController@index']);
     Route::get('jenjang/{kelas}', ['as'=>'jenjang', 'uses'=>'DepanController@kelas']);
     Route::get('kelas/{mapel}', ['as'=>'kelas', 'uses'=>'DepanController@mapel']);
+    Route::get('mapel/{soal}', ['as'=>'mapel', 'uses'=>'DepanController@soal']);
 });
 // Route::get('/produk', 'DepanController@produklist');
 // Route::get('/produk/{id}', 'DepanController@produk');

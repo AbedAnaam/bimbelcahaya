@@ -66,7 +66,7 @@ class MapelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestMapel $request)
     {
         \Validator::make($request->all(),[
             "nama_mapel"                    => "required|unique:tabel_mapel",

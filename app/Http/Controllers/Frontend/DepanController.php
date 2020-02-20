@@ -31,7 +31,7 @@ class DepanController extends Controller
     
     public function kelas($id)
     {
-        $this->data['title'] = 'Data Pendaftar';
+        $this->data['title'] = 'Data Kelas';
         // $this->data['kelas'] = Kelas::paginate(15);
         $this->data['jenjang'] = Kelas::where('jenjang_id', $id)->get();
 
@@ -42,7 +42,7 @@ class DepanController extends Controller
 
     public function mapel($id)
     {
-        $this->data['title'] = 'Data Pendaftar';
+        $this->data['title'] = 'Data Mata Pelajaran';
         // $this->data['mapel'] = Mapel::paginate(15);
         $this->data['kelas'] = Mapel::where('kelas_id', $id)->get();
 
@@ -51,9 +51,15 @@ class DepanController extends Controller
         return view('depan.mapel.index', $this->data);
     }
 
-    public function soal()
+    public function soal($id)
     {
-        # code...
+        $this->data['title'] = 'Data Mata Pelajaran';
+        // $this->data['mapel'] = Mapel::paginate(15);
+        $this->data['mapel'] = Soal::where('mapel_id', $id)->get();
+
+        // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
+        // dd($this->data['jenjang']);
+        return view('depan.mapel.index', $this->data);
     }
 
 	// public function produklist()

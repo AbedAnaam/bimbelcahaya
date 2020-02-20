@@ -16,9 +16,9 @@
 
 <section class="section">
     <div class="container">
-        <div class="columns">
+        <div class="columns is-mobile">
             @foreach($kelas->all() as $jenjang)
-                <div class="column">
+                <div class="column is-4">
                     <div class="uk-animation-toggle" tabindex="0">
                         <div class="uk-card uk-card-default uk-card-body uk-animation-fade is-link">
                             <div class="card-content">

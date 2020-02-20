@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Belakang;
 
+use Exception;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RequestUser;
+use Illuminate\Support\Facades\Storage;
 
 use App\User;
 // use Illuminate\Support\Facades\Gate;
@@ -91,13 +93,20 @@ class UserController extends Controller
 
         if ($request->file('avatar')) {
             $file = $request->file('avatar')->store('avatars', 'public');
+            // $file = Storage::putFile('public/avatar');
+
             // dd($file);
             $new_user->avatar = $file;
         }
 
+        // $path = Storage::putFile('avatar',
+        //     $request->file('avatar'),
+        // );
+        // $new_user->avatar = $path;
+
         $new_user->save();
         // User::create($request->all());
-        return redirect()->route('user.create')->with('status', 'User successfully created.');
+        return redirect()->route('user.create')->with('status', 'User successfully created');
     }
 
     /**
@@ -136,7 +145,7 @@ class UserController extends Controller
         \Validator::make($request->all(), [
             "name"          => "required|min:5|max:100",
             "roles"         => "required",
-            "phone"         => "required|digits_between:10,12",
+            "phone"         => "required|digits_between:10,14",
             "address"       => "required|min:20|max:200",
         ])->validate();
 
