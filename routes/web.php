@@ -17,7 +17,11 @@ Route::get('/', function () {
 }); */
 
 /* Route Frontend */
-Route::get('/', ['as' => 'home', 'uses' => 'Frontend\DepanController@index']);
+Route::group(['namespace'=>'Frontend','prefix' => '/', 'as'=>'root.'], function () {
+    Route::get('/', ['as' => 'index', 'uses' => 'DepanController@index']);
+    Route::get('jenjang/{kelas}', ['as'=>'jenjang', 'uses'=>'DepanController@kelas']);
+    Route::get('kelas/{mapel}', ['as'=>'kelas', 'uses'=>'DepanController@mapel']);
+});
 // Route::get('/produk', 'DepanController@produklist');
 // Route::get('/produk/{id}', 'DepanController@produk');
 

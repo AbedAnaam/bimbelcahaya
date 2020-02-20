@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use App\Model;
+use App\Model\Jenjang;
+use App\Model\Kelas;
+use App\Model\Mapel;
+use App\Model\Soal;
 
 class DepanController extends Controller
 {
@@ -20,9 +25,36 @@ class DepanController extends Controller
 
 	public function index()
 	{
-		// $this->data['navbar']  = Model\Profile::orderBy('id')->get();
+        $this->data['title'] = 'Daftar Jenjang';
 		return view('depan.index', $this->data);
-	}
+    }
+    
+    public function kelas($id)
+    {
+        $this->data['title'] = 'Data Pendaftar';
+        // $this->data['kelas'] = Kelas::paginate(15);
+        $this->data['jenjang'] = Kelas::where('jenjang_id', $id)->get();
+
+        // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
+        // dd($this->data['jenjang']);
+        return view('depan.kelas.index', $this->data);
+    }
+
+    public function mapel($id)
+    {
+        $this->data['title'] = 'Data Pendaftar';
+        // $this->data['mapel'] = Mapel::paginate(15);
+        $this->data['kelas'] = Mapel::where('kelas_id', $id)->get();
+
+        // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
+        // dd($this->data['jenjang']);
+        return view('depan.mapel.index', $this->data);
+    }
+
+    public function soal()
+    {
+        # code...
+    }
 
 	// public function produklist()
     // {

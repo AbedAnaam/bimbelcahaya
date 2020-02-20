@@ -1,22 +1,21 @@
 @extends('layouts.frontend.main')
 
 @section('content')
-	<section class="hero is-small is-warning is-bold">
-		<div class="hero-body">
+    <section class="hero is-small is-warning is-bold">
+        <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+            Database Soal
+            </h1>
+            <h2 class="subtitle">
+            Pada halaman ini, hanya akan dibuat Single Page Application berisi Database Soal Soal
+            </h2>
+        </div>
+        </div>
+    </section>
+
+    <section class="section">
 		<div class="container">
-			<h1 class="title">
-			Database Soal
-			</h1>
-			<h2 class="subtitle">
-			Pada halaman ini, hanya akan dibuat Single Page Application berisi Database Soal Soal
-			</h2>
-		</div>
-		</div>
-	</section>
-		
-	<section class="section">
-		<div class="container">
-			{{-- <h4>{{$title}}</h4> --}}
 			<div class="columns">
 				@foreach($jenjang->all() as $jenjang)
 					<div class="column">
@@ -26,15 +25,15 @@
 									<div class="media">
 										<div class="media-left">
 											<figure class="image is-128x128">
-											<img src="{{asset('storage/'.$jenjang->gambar_jenjang)}}" alt="Gambar Jenjang">
+											<img src="{{asset('storage/'.$jenjang->gambar_kelas)}}" alt="Gambar Jenjang">
 											</figure>
 										</div>
 
 										<div class="media-content">
 											{{-- @foreach ($kelas->all() as $kelasku) --}}
-												<p class="title is-4"><a href="{{url('jenjang', $jenjang->id)}}" style="text-decoration:none; color:black">{{$jenjang->nama_jenjang}}</a></p>
+												<p class="title is-4"><a href="{{url('kelas', $jenjang->id)}}" style="text-decoration:none; color:black">{{$jenjang->nama_kelas}}</a></p>
 											{{-- @endforeach --}}
-											<p class="subtitle is-6">{!! $jenjang->deskripsi_content !!}</p>
+											<p class="subtitle is-6">{!! $jenjang->deskripsi_kelas !!}</p>
 										</div>
 									</div>
 								</div>
