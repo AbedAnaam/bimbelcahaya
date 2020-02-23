@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers\Belakang;
 
-use App\Model\Mapel;
-use App\Model\Kelas;
-use App\Model\Soal;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 use Yajra\DataTables\DataTables;
 use Yajra\DataTables\Html\Builder;
+
+use App\Model\Mapel;
+use App\Model\Kelas;
+use App\Model\Soal;
 
 class MapelController extends Controller
 {

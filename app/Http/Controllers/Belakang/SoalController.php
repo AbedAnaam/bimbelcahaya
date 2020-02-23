@@ -68,7 +68,7 @@ class SoalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestSoal $request)
+    public function store(Request $request)
     {
         \Validator::make($request->all(),[
             "nama_soal"                    => "required|unique:tabel_soal",

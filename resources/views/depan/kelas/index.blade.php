@@ -5,19 +5,30 @@
         <div class="hero-body">
         <div class="container">
             <h1 class="title">
-            Database Soal
+            DAFTAR KELAS
             </h1>
             <h2 class="subtitle">
-            Pada halaman ini, hanya akan dibuat Single Page Application berisi Database Soal Soal
+            HANYA MENAMPILKAN KELAS - kelas.index
             </h2>
         </div>
         </div>
-    </section>
+	</section>
 
     <section class="section">
+		{{-- <div class="container">
+			<nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
+				<ul>
+					<li><a href="{{url('/')}} ">Jenjang</a></li>
+					<li class="is-active"><a href="{{url('jenjang')}}" aria-current="page">Kelas</a></li>
+				</ul>
+			</nav>
+		</div> --}}
+
+		<br>
+
 		<div class="container">
 			<div class="columns is-mobile">
-				@foreach($jenjang->all() as $jenjang)
+				@foreach($kelas->all() as $jenjang)
 					<div class="column is-4">
 						<div class="uk-animation-toggle" tabindex="0">
 							<div class="uk-card uk-card-default uk-card-body uk-animation-fade is-link">
@@ -40,7 +51,7 @@
 							</div>
 						</div>
 					</div>
-				@endforeach
+					@endforeach
 				</div>
 			</div>
 		</section>

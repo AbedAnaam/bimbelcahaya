@@ -1,25 +1,28 @@
 @extends('layouts.frontend.main')
 
 @section('content')
-	<section class="hero is-small is-warning is-bold">
+	<section class="hero is-small is-primary is-bold">
 		<div class="hero-body">
-		<div class="container">
-			<h1 class="title">
-			Database Soal
-			</h1>
-			<h2 class="subtitle">
-			Pada halaman ini, hanya akan dibuat Single Page Application berisi Database Soal Soal
-			</h2>
-		</div>
+			<div class="container">
+				<h1 class="title">
+				{{-- Database Soal --}}
+				Jenjang
+				</h1>
+				<h2 class="subtitle">
+				{{-- Pada halaman ini, hanya akan dibuat Single Page Application berisi Database Soal Soal --}}
+				Hanya Menampilkan Jenjang - depan.index
+				</h2>
+			</div>
 		</div>
 	</section>
-		
+
 	<section class="section">
 		<div class="container">
-			{{-- <h4>{{$title}}</h4> --}}
 			<div class="columns is-mobile">
+				<div class="owl-carousel owl-theme">
 				@foreach($jenjang->all() as $jenjang)
-					<div class="column is-4">
+					<div class="item">
+					<div class="column">
 						<div class="uk-animation-toggle" tabindex="0">
 							<div class="uk-card uk-card-default uk-card-body uk-animation-fade is-link">
 								<div class="card-content">
@@ -41,9 +44,12 @@
 							</div>
 						</div>
 					</div>
-				@endforeach
+					</div>
+					@endforeach
 				</div>
 			</div>
+		</div>
+			
 		</section>
 	
 		<footer class="footer">

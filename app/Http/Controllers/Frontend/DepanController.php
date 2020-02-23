@@ -33,7 +33,7 @@ class DepanController extends Controller
     {
         $this->data['title'] = 'Data Kelas';
         // $this->data['kelas'] = Kelas::paginate(15);
-        $this->data['jenjang'] = Kelas::where('jenjang_id', $id)->get();
+        $this->data['kelas'] = Kelas::where('jenjang_id', $id)->get();
 
         // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
         // dd($this->data['jenjang']);
@@ -44,7 +44,7 @@ class DepanController extends Controller
     {
         $this->data['title'] = 'Data Mata Pelajaran';
         // $this->data['mapel'] = Mapel::paginate(15);
-        $this->data['kelas'] = Mapel::where('kelas_id', $id)->get();
+        $this->data['mapel'] = Mapel::where('kelas_id', $id)->get();
 
         // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
         // dd($this->data['jenjang']);
@@ -53,52 +53,24 @@ class DepanController extends Controller
 
     public function soal($id)
     {
-        $this->data['title'] = 'Data Mata Pelajaran';
+        $this->data['title'] = 'Data Soal';
         // $this->data['mapel'] = Mapel::paginate(15);
-        $this->data['mapel'] = Soal::where('mapel_id', $id)->get();
+        $this->data['soal'] = Soal::where('mapel_id', $id)->get();
 
         // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
         // dd($this->data['jenjang']);
-        return view('depan.mapel.index', $this->data);
+        return view('depan.soal.index', $this->data);
     }
 
-	// public function produklist()
+    // public function list_soal($id)
     // {
-    //     $this->data['title'] = 'Produk Kami';
-    //     $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-    //     $this->data['produklist'] = Model\Produk::orderBy('id','asc')->paginate(8);
-    //     return view('frontend.produk.list', $this->data);
-    // }
+    //     $this->data['title'] = 'Daftar Latihan Soal';
+    //     // $this->data['mapel'] = Mapel::paginate(15);
+    //     $this->data['list_soal'] = Soal::where('mapel_id', $id)->get();
+    //     dd ($this->data['list_soal']);
 
-    // public function produk($id)
-    // {
-    //     $this->data['title'] = 'Detail Product';
-    //     $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-    //     $this->data['produkdetail'] = Model\Produk::find($id);
-    //     return view('frontend.produk.detail', $this->data);
-    // }
-
-    // public function profile()
-    // {
-    //     $this->data['title']    = 'Profile Kami';
-    //     $this->data['profile']  = Model\Profile::get();
-    //     $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-    //     return view('frontend.profile.index', $this->data);
-    // }
-
-    // public function resep()
-    // {
-    //     $this->data['title']    = 'Daftar Blog';
-    //     $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-    //     $this->data['resep']  = Model\Resep::get();
-    //     return view('frontend.resep.index', $this->data);
-    // }
-
-    // public function testimonial()
-    // {
-    //     $this->data['title']    = 'Daftar Blog';
-    //     $this->data['navbar']  = Model\Profile::orderBy('id')->get();
-    //     $this->data['testimonial']  = Model\Testimoni::get();
-    //     return view('frontend.testimonial.index', $this->data);
+    //     // $this->data['kelas'] = Kelas::where('jenjang_id', $id)->with('jenjang')->get();
+    //     // dd($this->data['jenjang']);
+    //     return view('depan.list_soal.index', $this->data);
     // }
 }

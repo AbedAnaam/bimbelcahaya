@@ -60,7 +60,7 @@ class JenjangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestJenjang $request)
+    public function store(Request $request)
     {
         \Validator::make($request->all(),[
             "nama_jenjang"                  => "required|unique:tabel_jenjang",
