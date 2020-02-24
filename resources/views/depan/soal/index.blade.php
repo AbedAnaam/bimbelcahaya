@@ -16,7 +16,7 @@
 </section>
 
 <section class="section">
-    <div class="container">
+    {{-- <div class="container">
         <nav class="breadcrumb has-succeeds-separator" aria-label="breadcrumbs">
             <ul>
                 @foreach($soal->all() as $jenjang)
@@ -27,14 +27,14 @@
                     <li class="is-active"><a href="{{url('soal')}}" aria-current="page">Soal</a></li>
             </ul>
         </nav>
-    </div>
+    </div> --}}
 
     <br>
 
-    @foreach($soal->all() as $jenjang)
     <div class="container">
         <div class="columns is-mobile">
-                <div class="column is-one-third">
+            @foreach($soal->all() as $jenjang)
+                <div class="column">
                     <div class="uk-animation-toggle" tabindex="0">
                         <div class="uk-card uk-card-default uk-card-body uk-animation-fade is-link">
                             <div class="card-content">
@@ -54,9 +54,9 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
         </div>
-        @endforeach
     </section>
 
     <footer class="footer">

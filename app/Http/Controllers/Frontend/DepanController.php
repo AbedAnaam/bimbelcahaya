@@ -23,6 +23,12 @@ class DepanController extends Controller
         $this->data['soal']     = Model\Soal::orderBy('id')->get();
     }
 
+    public function layout()
+    {
+        $this->data['title'] = 'Daftar Jenjang';
+		return view('layouts.frontend.main', $this->data);
+    }
+
 	public function index()
 	{
         $this->data['title'] = 'Daftar Jenjang';
