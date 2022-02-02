@@ -25,15 +25,13 @@ class SoalController extends Controller
     public function index(Request $request, Builder $htmlBuilder)
     {
         if ($request->ajax()) {
-            $soal = Soal::select(['id','mapel_id','nama_soal','gambar_soal','isi_soal','deskripsi_soal']);
-            // $jenjang = Jenjang::select(['id','nama_jenjang','deskripsi_content']);
+            $soal = Soal::select(['id','mapel_id','nama_soal','isi_soal','deskripsi_soal']);
                 return DataTables::of($soal)
                 ->addColumn('action', function($soal){
                     return view('belakang.soal._action', [
                         'model'         => $soal,
                         'form_url'      => route('soal.destroy', $soal->id),
                         'edit_url'      => route('soal.edit', $soal->id)]);
-                        // 'show_url'      => route('jenjang.show', $jenjangs->id)]);
                 })
                 ->addColumn('deskripsi_soal', function($soal){
                     return strip_tags($soal->deskripsi_soal);
@@ -42,7 +40,6 @@ class SoalController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama_soal', 'name'=>'nama_soal', 'title'=>'Nama Soal'])
-            ->addColumn(['data'=>'gambar_soal', 'name'=>'gambar_soal', 'title'=>'Gambar Soal'])
             ->addColumn(['data'=>'isi_soal', 'name'=>'isi_soal', 'title'=>'Isi Soal'])
             ->addColumn(['data'=>'deskripsi_soal', 'name'=>'deskripsi_soal', 'title'=>'Deskripsi Soal'])
             ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
@@ -73,7 +70,6 @@ class SoalController extends Controller
         \Validator::make($request->all(),[
             "nama_soal"                    => "required|unique:tabel_soal",
             "deskripsi_soal"               => "required|min:5|max:200",
-            "gambar_soal"                  => "required",
             "isi_soal"                     => "required",
             "mapel_id"                     => "required",
         ])->validate();
@@ -84,11 +80,6 @@ class SoalController extends Controller
         $new_soal->deskripsi_soal = $request->get('deskripsi_soal');
         $new_soal->isi_soal = $request->get('isi_soal');
         $new_soal->mapel_id = $request->get('mapel_id');
-
-        if ($request->file('gambar_soal')) {
-            $file = $request->file('gambar_soal')->store('image-soal', 'public');
-            $new_soal->gambar_soal = $file;
-        }
 
         // Disini proses mendapatkan judul dan memindahkan letak file ke folder tertentu
         // if ($request->file('isi_soal')){
@@ -150,14 +141,6 @@ class SoalController extends Controller
         $soal->nama_soal = $request->get('nama_soal');
         $soal->isi_soal = $request->get('isi_soal');
         $soal->deskripsi_soal = $request->get('deskripsi_soal');
-
-        if($request->file('gambar_soal')){
-            if ($soal->gambar_soal && file_exists(storage_path('app/public/' . $soal->gambar_soal))) {
-                \Storage::delete('public/' . $soal->gambar_soal);
-            }
-            $file = $request->file('gambar_soal')->store('image-soal', 'public');
-            $soal->gambar_soal = $file;
-        }
 
         $soal->save();
 

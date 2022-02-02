@@ -41,38 +41,6 @@
                     </div>
                 <br>
 
-                <label>Gambar<font style="inline-block" color="red">(*)</font></label><br>
-                @if($mapel->gambar_mapel)
-                    <span>Current image</span><br>
-                    <img src="{{asset('storage/'. $mapel->gambar_mapel)}}" width="120px">
-                    <br><br>
-                @endif
-                <input
-                    type="file"
-                    class="form-control {{$errors->first('gambar_mapel') ? "is-invalid" : ""}}"
-                    name="gambar_mapel">
-                    <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
-                    <div class="invalid-feedback">
-                        {{$errors->first('gambar_mapel')}}
-                    </div>
-                <br>
-                <br>
-
-                {{-- <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">
-                            <label>Pilih Jenjang</label>
-                            <select class="form-control border-input" name="jenjang_id">
-                                <option value="kosong">- Silakan Pilih Jenjang -</option>
-                                @foreach($jenjang as $jdK => $jdV)
-                                <option value="{{$jdK}}" {{old('jenjang_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
-                                @endforeach
-                            </select>
-                            <span id="helpBlock2" class="help-block">{{$errors->first('jenjang_id')}}</span>
-                        </div>
-                    </div>
-                </div> --}}
-
                 <label>Deskripsi Mapel <font style="inline-block" color="red">(*)</font></label>
                 <textarea
                     class="form-control {{$errors->first('deskripsi_mapel') ? "is-invalid" : ""}}" 

@@ -16,7 +16,7 @@ class Jenjang extends Model
     public function scopeSelectBox($query)
     {
         $return = array();
-        $data = $query->orderBy('id','desc')->get()->toArray();
+        $data = $query->orderBy('id','asc')->get()->toArray();
         foreach ($data as $key => $value) {
         	$return[$value['id']] = $value['nama_jenjang'];
         }

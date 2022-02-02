@@ -1,0 +1,26 @@
+- AKTIFKAN DOCKER -
+Untuk mengaktifkan docker dapat menggunakan perintah berikut :
+docker-compose up -d nginx mysql redis phpmyadmin workspace 
+
+- MASUK KE WORKSPACE -
+Untuk dapat masuk ke workspace laradock bisa dengan :
+a. Pastikan direktori terakhir adalah 'laradock'
+b. Ketikkan perintah berikut : docker-compose exec --user=laradock workspace bash
+
+- PHPMYADMIN -
+Untuk bisa masuk ke phpmyadmin, bisa diakses melalui browser dengan alamat : localhost:8080
+Server 		: mysql
+Username 	: root
+Password 	: root
+
+- LARAVEL NEW PROJECT -
+a. laravel new {nama_project} --> masuk ke folder {nama_project} --> composer install ; atau
+b. composer create-project --prefer-dist laravel/laravel={versi_laravel} {nama_project}
+
+- BUAT VIRTUAL HOST BARU - 
+a. Untuk MAC atau Linux ketikkan perintah berikut :
+	sudo nano etc/hosts
+b. Untuk Windows 10, cari di folder C:\Windows\System32\Drivers\etc\hosts
+c. Setelah itu tambahkan virtual hosts baru yakni :
+	127.0.0.1	{nama virtual yang diinginkan}
+d. 

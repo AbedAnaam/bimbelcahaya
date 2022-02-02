@@ -41,23 +41,6 @@
                     </div>
                 <br>
 
-                <label>Gambar<font style="inline-block" color="red">(*)</font></label><br>
-                @if($kelas->gambar_kelas)
-                    <span>Current image</span><br>
-                    <img src="{{asset('storage/'. $kelas->gambar_kelas)}}" width="120px">
-                    <br><br>
-                @endif
-                <input
-                    type="file"
-                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
-                    name="gambar_kelas">
-                    <small class="text-muted">Kosongkan jika tidak ingin mengubah gambar</small>
-                    <div class="invalid-feedback">
-                        {{$errors->first('gambar_kelas')}}
-                    </div>
-                <br>
-                <br>
-
                 {{-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">

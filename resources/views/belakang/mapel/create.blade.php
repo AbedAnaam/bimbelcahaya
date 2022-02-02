@@ -1,6 +1,15 @@
 @extends('layouts.backend.main')
 
 @section('content')
+    @if(session('status'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{session('status')}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+        </div>
+    @endif
+        
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">Tambah Mata Pelajaran</h6>
@@ -27,30 +36,20 @@
                     </div>
                 <br>
 
-                <label>Gambar Mapel <font style="inline-block" color="red">(*)</font></label>
-                <input
-                    type="file"
-                    class="form-control {{$errors->first('gambar_mapel') ? "is-invalid" : ""}}"
-                    name="gambar_mapel">
-                    <div class="invalid-feedback">
-                        {{$errors->first('gambar_mapel')}}
-                    </div>
-                <br>
-
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group @if($errors->has('kelas_id')) has-error @endif">
-                            <label>Pilih Kelas</label>
-                            <select class="form-control border-input" name="kelas_id">
-                                <option value="kosong">- Silakan Pilih Kelas -</option>
-                                @foreach($kelas as $jdK => $jdV)
-                                <option value="{{$jdK}}" {{old('kelas_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
-                                @endforeach
-                            </select>
-                            <span id="helpBlock2" class="help-block">{{$errors->first('kelas_id')}}</span>
+                        <label>ID Kelas</label>
+                            <input type="text" 
+                                class="form-control {{$errors->first('kelas_id') ? "is-invalid" : ""}}" 
+                                name="kelas_id" 
+                                value="{{ $mapel->kelas_id }}" placeholder="{{ $mapel->kelas->nama_kelas}}" 
+                                readonly>
+                        <div class="invalid-feedback">
+                            {{$errors->first('kelas_id')}}
                         </div>
                     </div>
                 </div>
+                <br>
 
                 <label>Deskripsi Mapel <font style="inline-block" color="red">(*)</font></label>
                 <textarea

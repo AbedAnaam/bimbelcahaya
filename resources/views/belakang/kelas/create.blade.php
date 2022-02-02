@@ -27,16 +27,6 @@
                     </div>
                 <br>
 
-                <label>Gambar Kelas <font style="inline-block" color="red">(*)</font></label>
-                <input
-                    type="file"
-                    class="form-control {{$errors->first('gambar_kelas') ? "is-invalid" : ""}}"
-                    name="gambar_kelas">
-                    <div class="invalid-feedback">
-                        {{$errors->first('gambar_kelas')}}
-                    </div>
-                <br>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group @if($errors->has('jenjang_id')) has-error @endif">

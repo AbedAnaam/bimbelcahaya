@@ -12,12 +12,12 @@ class BelakangSeeder extends Seeder
     public function run()
     {
         $administrator = new \App\User;
-        $administrator->username = "Admin Bimbel";
+        $administrator->username = "Admin";
         $administrator->name = "BimbelCahaya";
         $administrator->email = "bimbelcahaya@gmail.com";
         $administrator->roles = json_encode(["ADMIN"]);
         // $administrator->roles = 'admin';
-        $administrator->password = \Hash::make("BimbelC4h4y4");
+        $administrator->password = \Hash::make("BimbelCahay4");
         $administrator->avatar = "tidak-ada-image.png";
         $administrator->address = "Tahunan, Umbulharjo, Yogyakarta";
         $administrator->phone = "0875859909";

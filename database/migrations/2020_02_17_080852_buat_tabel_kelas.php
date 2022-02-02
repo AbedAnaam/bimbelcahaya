@@ -19,7 +19,6 @@ class BuatTabelKelas extends Migration
             $table->unsignedInteger('jenjang_id');
             $table->foreign('jenjang_id')->references('id')->on('tabel_jenjang')->onUpdate('CASCADE')->onDelete('CASCADE');
 
-            $table->string('gambar_kelas')->comments('Hanya menampilkan path imagenya saja');
             // $table->string('kategori_kelas');
 			$table->string('nama_kelas');
 			$table->mediumText('deskripsi_kelas')->nullable();

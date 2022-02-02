@@ -27,7 +27,6 @@ class RequestMapel extends FormRequest
         return [
             "nama_mapel"                    => "required|unique:tabel_mapel",
             "deskripsi_mapel"               => "required|min:5|max:200",
-            "gambar_mapel"                  => "required",
             "kelas_id"                      => "required",
         ];
     }
@@ -40,7 +39,6 @@ class RequestMapel extends FormRequest
             'deskripsi_mapel.required'      => 'Deskripsi Mapel Harus Diisi',
             'deskripsi_mapel.min:5'         => 'Karakter minimal 5',
             'deskripsi_mapel.max:200'       => 'Karakter maksimal 100',
-            'gambar_mapel.required'         => 'Gambar Harus Dipilih',
             'kelas_id.required'             => 'Kelas Harus Dipilih', 
         ];
     }

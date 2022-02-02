@@ -27,7 +27,6 @@ class RequestKelas extends FormRequest
         return [
             "nama_kelas"                    => "required|unique:tabel_kelas",
             "deskripsi_kelas"               => "required|min:5|max:200",
-            "gambar_kelas"                  => "required",
             "jenjang_id"                    => "required",
         ];
     }
@@ -40,7 +39,6 @@ class RequestKelas extends FormRequest
             'deskripsi_kelas.required'      => 'Deskripsi Kelas Harus Diisi',
             'deskripsi_kelas.min:5'         => 'Minimal Karakter adalah 5',
             'deskripsi_kelas.max:200'       => 'Maksimal Karakter adalah 200',
-            'gambar_kelas.required'         => 'Gambar Harus Dipilih',
             'jenjang_id.required'           => 'Jenjang Harus Dipilih', 
         ];
     }

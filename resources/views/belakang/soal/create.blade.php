@@ -27,16 +27,6 @@
                     </div>
                 <br>
 
-                <label>Gambar Soal <font style="inline-block" color="red">(*)</font></label>
-                <input
-                    type="file"
-                    class="form-control {{$errors->first('gambar_soal') ? "is-invalid" : ""}}"
-                    name="gambar_soal">
-                    <div class="invalid-feedback">
-                        {{$errors->first('gambar_soal')}}
-                    </div>
-                <br>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group @if($errors->has('mapel_id')) has-error @endif">

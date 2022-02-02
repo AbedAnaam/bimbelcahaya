@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Model;
+use App\Model\Kelas;
 
 use Illuminate\Database\Eloquent\Model;
 

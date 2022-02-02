@@ -49,8 +49,7 @@ Route::group(['namespace'=>'Belakang', 'prefix'=>'belakang', 'middleware'=>'admi
     Route::resource('user', 'UserController');
     Route::resource('jenjang','JenjangController');
     Route::resource('kelas','KelasController');
-    Route::resource('mapel', 'MapelController');
+    Route::resource('mapel', 'MapelController')->except('create');
+    Route::get('mapel/{id}/create', 'MapelController@tambah')->name('mapel.tambah');
     Route::resource('soal','SoalController');
 });
-
-// Route::get('/home', 'HomeController@index')->name('home');

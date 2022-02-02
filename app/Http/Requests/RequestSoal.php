@@ -27,7 +27,6 @@ class RequestSoal extends FormRequest
         return [
             "nama_soal"                    => "required|unique:tabel_soal",
             "deskripsi_soal"               => "required|min:5|max:200",
-            "gambar_soal"                  => "required",
             "isi_soal"                     => "required",
             "mapel_id"                     => "required",
         ];
@@ -41,7 +40,6 @@ class RequestSoal extends FormRequest
             'deskripsi_soal.required'       => 'Deskripsi Soal Harus Diisi',
             'deskripsi_soal.min:5'          => 'Karakter minimal 5',
             'deskripsi_soal.max:200'        => 'Karakter maksimal 100',
-            'gambar_soal.required'          => 'Gambar Harus Dipilih',
             'mapel_id.required'             => 'Mata Pelajaran Harus Dipilih', 
         ];
     }

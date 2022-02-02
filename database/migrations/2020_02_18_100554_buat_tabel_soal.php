@@ -19,7 +19,6 @@ class BuatTabelSoal extends Migration
             $table->unsignedInteger('mapel_id');
             $table->foreign('mapel_id')->references('id')->on('tabel_mapel')->onUpdate('CASCADE')->onDelete('CASCADE');
 
-            $table->string('gambar_soal')->comments('Hanya menampilkan path imagenya saja');
             $table->string('nama_soal');
             $table->string('isi_soal');
             $table->mediumText('deskripsi_soal')->nullable();
