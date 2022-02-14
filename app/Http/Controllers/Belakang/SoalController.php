@@ -40,6 +40,7 @@ class SoalController extends Controller
 
         $html = $htmlBuilder
             ->addColumn(['data'=>'nama_soal', 'name'=>'nama_soal', 'title'=>'Nama Soal'])
+            ->addColumn(['data'=>'mapel_id', 'name'=>'mapel_id', 'title'=>'ID Mata Pelajaran'])
             ->addColumn(['data'=>'isi_soal', 'name'=>'isi_soal', 'title'=>'Isi Soal'])
             ->addColumn(['data'=>'deskripsi_soal', 'name'=>'deskripsi_soal', 'title'=>'Deskripsi Soal'])
             ->addColumn(['data'=>'action', 'name'=>'action', 'title'=>'Aksi', 'orderable'=>false, 'searchable'=>false]);
@@ -56,6 +57,7 @@ class SoalController extends Controller
     public function create()
     {
         $this->data['mapel'] = Mapel::SelectBox();
+        
         return view('belakang.soal.create', $this->data);
     }
 
@@ -82,11 +84,11 @@ class SoalController extends Controller
         $new_soal->mapel_id = $request->get('mapel_id');
 
         // Disini proses mendapatkan judul dan memindahkan letak file ke folder tertentu
-        // if ($request->file('isi_soal')){
-        //     $isi_soal   = $file->getClientOriginalName();
-        //     $request->file('isi_soal')->move('uploads/soal/', 'public', $isi_soal);
-        //     $new_soal->isi_soal = $isi_soal;
-        // }
+        if ($request->get('isi_soal')){
+            $isi_soal   = $file->getClientOriginalName();
+            $request->file('isi_soal')->move('uploads/soal/', 'public', $isi_soal);
+            $new_soal->isi_soal = $isi_soal;
+        }
 
         $file       = $request->file('isi_soal');
         $fileName   = $file->getClientOriginalName();
@@ -94,7 +96,6 @@ class SoalController extends Controller
         $new_soal->isi_soal = $fileName;
 
         $new_soal->save();
-        // dd($hasil);
         return redirect()->route('soal.index')->with('status', 'Data Soal berhasil ditambahkan');
     }
 
@@ -139,12 +140,23 @@ class SoalController extends Controller
         $soal = Soal::findOrFail($id);
 
         $soal->nama_soal = $request->get('nama_soal');
-        $soal->isi_soal = $request->get('isi_soal');
+
+        if ($request->get('isi_soal')){
+            $isi_soal   = $file->getClientOriginalName();
+            $request->file('isi_soal')->move('uploads/soal/', 'public', $isi_soal);
+            $new_soal->isi_soal = $isi_soal;
+        }
+
+        $file       = $request->file('isi_soal');
+        $fileName   = $file->getClientOriginalName();
+        $request->file('isi_soal')->move("uploads/soal/", $fileName);
+        $soal->isi_soal = $fileName;
+
         $soal->deskripsi_soal = $request->get('deskripsi_soal');
 
         $soal->save();
 
-        return redirect()->route('soal.edit', $soal->id)->with('status', 'Data Soal berhasil diedit!');
+        return redirect()->route('soal.index')->with('status', 'Data Soal berhasil diedit!');
     }
 
     /**

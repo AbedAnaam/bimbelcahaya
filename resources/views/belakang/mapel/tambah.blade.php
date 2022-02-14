@@ -38,15 +38,14 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="form-group @if($errors->has('kelas_id')) has-error @endif">
-                            <label>Pilih Kelas</label>
-                            <select class="form-control border-input" name="kelas_id">
-                                <option value="kosong">- Silakan Pilih Kelas -</option>
-                                @foreach($mapel as $jdK => $jdV)
-                                    <option value="{{$jdK}}" {{old('kelas_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
-                                @endforeach
-                            </select>
-                            <span id="helpBlock2" class="help-block">{{$errors->first('kelas_id')}}</span>
+                        <label>ID Kelas</label>
+                            <input type="text" 
+                                class="form-control {{$errors->first('kelas_id') ? "is-invalid" : ""}}" 
+                                name="kelas_id" 
+                                value="{{ $mapel->kelas_id }}" placeholder="{{ $mapel->kelas->nama_kelas}}" 
+                                readonly>
+                        <div class="invalid-feedback">
+                            {{$errors->first('kelas_id')}}
                         </div>
                     </div>
                 </div>

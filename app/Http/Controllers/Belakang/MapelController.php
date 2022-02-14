@@ -33,8 +33,8 @@ class MapelController extends Controller
     public function tambah($id)
     {
         $this->data['mapel'] = Mapel::with('Kelas')->where('kelas_id', $id)->get()->first();
-
-        return view('belakang.mapel.create', $this->data);
+        // dd($this->data['mapel']);
+        return view('belakang.mapel.tambah', $this->data);
     }
 
     /**
@@ -47,12 +47,13 @@ class MapelController extends Controller
         // $this->data['joinkelas'] = Mapel::join('tabel_kelas', 'tabel_mapel.kelas_id', '=', 'tabel_mapel.id')
         //                         ->get(['tabel_mapel.kelas_id', 'tabel_kelas.nama_kelas']);
 
-        $this->data['mapel'] = Mapel::with('Kelas')->where('kelas_id', 'id')->get();
+        // $this->data['mapel'] = Mapel::with('Kelas')->where('kelas_id', 'id')->get();
         // $this->data['kelas'] = Kelas::with('Mapel')->where('jenjang_id', $id)->get();
         // dd($this->data['mapel']);
         // $this->data['mapel'] = Mapel::find(1);
         // dd($kelas->kelas->nama_kelas); 
-       // <-- sek marai sak jose boskuu
+        // <-- sek marai sak jose boskuu
+        $this->data['mapel'] = Kelas::SelectBox();
         
         return view('belakang.mapel.create', $this->data );
     }
@@ -66,7 +67,7 @@ class MapelController extends Controller
     public function store(Request $request)
     {
         \Validator::make($request->all(),[
-            "nama_mapel"                    => "required|unique:tabel_mapel",
+            "nama_mapel"                    => "required",
             "deskripsi_mapel"               => "required|min:5|max:200",
             "kelas_id"                      => "required",
         ])->validate();
@@ -75,7 +76,7 @@ class MapelController extends Controller
 
         $new_mapel->nama_mapel = $request->get('nama_mapel');
         $new_mapel->deskripsi_mapel = $request->get('deskripsi_mapel');
-        $new_mapel->kelas_id = $request->post('kelas_id');
+        $new_mapel->kelas_id = $request->get('kelas_id');
 
         $new_mapel->save();
 
@@ -148,7 +149,7 @@ class MapelController extends Controller
 
         $mapel->save();
 
-        return redirect()->route('mapel.edit', $mapel->id)->with('status', 'Data Mata Pelajaran berhasil diedit!');
+        return redirect()->route('mapel.show', $mapel->id)->with('status', 'Data Mata Pelajaran berhasil diedit!');
     }
 
     /**

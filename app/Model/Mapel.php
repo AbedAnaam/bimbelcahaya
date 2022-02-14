@@ -2,6 +2,7 @@
 
 namespace App\Model;
 use App\Model\Kelas;
+use App\Model\Soal;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,9 +23,10 @@ class Mapel extends Model
     public function scopeSelectBox($query)
     {
         $return = array();
-        $data = $query->orderBy('id','desc')->get()->toArray();
-        foreach ($data as $key => $value) {
-            $return[$value['id']] = $value['nama_mapel'];
+        $rawdata = $query->with('Kelas')->orderBy('kelas_id', 'asc')->get()->toArray();
+        // dd($rawdata);
+        foreach ($rawdata as $key => $value) {
+            $return[$value['id']] = $value['kelas']['nama_kelas'] . ' - ' . $value['nama_mapel'];
         }
         return $return;
     }

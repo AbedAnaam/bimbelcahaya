@@ -34,7 +34,7 @@
                             <select class="form-control border-input" name="mapel_id">
                                 <option value="kosong">- Silakan Pilih Mata Pelajaran -</option>
                                 @foreach($mapel as $jdK => $jdV)
-                                <option value="{{$jdK}}" {{old('mapel_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
+                                    <option value="{{$jdK}}" {{old('mapel_id') == $jdK ? 'selected' : ''}}>{{$jdV}}</option>
                                 @endforeach
                             </select>
                             <span id="helpBlock2" class="help-block">{{$errors->first('mapel_id')}}</span>

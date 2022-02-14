@@ -25,7 +25,7 @@ class RequestMapel extends FormRequest
     public function rules()
     {
         return [
-            "nama_mapel"                    => "required|unique:tabel_mapel",
+            "nama_mapel"                    => "required",
             "deskripsi_mapel"               => "required|min:5|max:200",
             "kelas_id"                      => "required",
         ];
@@ -35,7 +35,6 @@ class RequestMapel extends FormRequest
     {
         return [
             'nama_mapel.required'           => 'Nama Mapel Harus Diisi',
-            'nama_mapel.unique'             => 'Nama Mapel tidak boleh sama',
             'deskripsi_mapel.required'      => 'Deskripsi Mapel Harus Diisi',
             'deskripsi_mapel.min:5'         => 'Karakter minimal 5',
             'deskripsi_mapel.max:200'       => 'Karakter maksimal 100',

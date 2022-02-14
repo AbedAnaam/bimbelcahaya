@@ -22,11 +22,7 @@ Route::group(['namespace'=>'Frontend','prefix' => '/', 'as'=>'root'], function (
     Route::get('jenjang/{kelas}', ['as'=>'jenjang', 'uses'=>'DepanController@kelas']);
     Route::get('kelas/{mapel}', ['as'=>'kelas', 'uses'=>'DepanController@mapel']);
     Route::get('mapel/{soal}', ['as'=>'mapel', 'uses'=>'DepanController@soal']);
-    // Route::get('soal/{list_soal}', ['as'=>'soal', 'uses'=>'DepanController@list_soal']);
 });
-// Route::get('/produk', 'DepanController@produklist');
-// Route::get('/produk/{id}', 'DepanController@produk');
-
 
 /* Route Backend */
 Route::get('belakang/login', function(){
@@ -49,7 +45,7 @@ Route::group(['namespace'=>'Belakang', 'prefix'=>'belakang', 'middleware'=>'admi
     Route::resource('user', 'UserController');
     Route::resource('jenjang','JenjangController');
     Route::resource('kelas','KelasController');
-    Route::resource('mapel', 'MapelController')->except('create');
+    Route::resource('mapel', 'MapelController');
     Route::get('mapel/{id}/create', 'MapelController@tambah')->name('mapel.tambah');
     Route::resource('soal','SoalController');
 });

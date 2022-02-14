@@ -18,11 +18,15 @@
             <a href="{{route('mapel.index')}}" class="d-none d-sm-block mr-2 ml-auto btn btn-sm btn-warning shadow-sm">
                 <i class="fas fa-chevron-circle-left fa-sm text-white-50"></i> Kembali
             </a>
-            <a @if(count($mapel) >= 0) 
-                href="@foreach($mapel as $mpl){{ route('mapel.tambah', $mpl->kelas_id )}} @endforeach" @endif
-            class="d-none d-sm-block btn btn-sm btn-primary shadow-sm">
-                <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Data
-            </a>
+            @if(count($mapel) == 0)
+                <a href="{{ route('mapel.create')}}" class="d-none d-sm-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Data Baru
+                </a>
+            @else
+                <a href="{{ route('mapel.tambah', $mpl->kelas_id )}}" class="d-none d-sm-block btn btn-sm btn-primary shadow-sm">
+                    <i class="fas fa-plus-circle fa-sm text-white-50"></i> Tambah Data
+                </a>
+            @endif
         </div>
         <div class="card-body">
             @if(count($mapel) >= 1)

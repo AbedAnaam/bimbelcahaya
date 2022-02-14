@@ -13,6 +13,11 @@ class Jenjang extends Model
         return $this->hasMany('App\Model\Kelas','jenjang_id', 'id');
     }
 
+    public function jenjang()
+    {
+        return $this->hasMany('App\Model\Mapel','mapel_id', 'id');
+    }
+
     public function scopeSelectBox($query)
     {
         $return = array();

@@ -41,6 +41,17 @@
                     </div>
                 <br>
 
+                <label>Isi Soal <font style="inline-block" color="red">(*)</font></label>
+                <input
+                    type="file"
+                    class="form-control {{$errors->first('isi_soal') ? "is-invalid" : ""}}"
+                    value="{{old('isi_soal') ? old('isi_soal') : $soal->isi_soal}}"
+                    name="isi_soal">
+                    <div class="invalid-feedback">
+                        {{$errors->first('isi_soal')}}
+                    </div>
+                <br>
+
                 <label>Deskripsi Soal <font style="inline-block" color="red">(*)</font></label>
                 <textarea
                     class="form-control {{$errors->first('deskripsi_soal') ? "is-invalid" : ""}}" 
