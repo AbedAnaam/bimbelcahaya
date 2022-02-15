@@ -4,7 +4,7 @@
 <div class="navbar-start">
 	<div class="navbar-item has-dropdown is-hoverable">
 		<a class="navbar-link">
-			Jenjang
+			Tingkat
 		</a>
 
 		<div class="navbar-dropdown">
